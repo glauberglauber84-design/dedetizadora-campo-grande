@@ -1,0 +1,82 @@
+---
+interface Props {
+  texto?: string;
+}
+
+const textoDefault = `Há mais de 10 anos cuidando da saúde de famílias e empresas em Campo Grande e região.
+A Dedetizadora Campo Grande é formada por uma equipe de técnicos capacitados, com produtos
+registrados na Anvisa e procedimentos seguros para crianças, idosos e animais de estimação.
+Atuamos com responsabilidade ambiental, pontualidade e garantia escrita em todos os serviços.`;
+
+const { texto } = Astro.props;
+const copy = texto && texto.trim().length > 0 ? texto : textoDefault;
+---
+<section id="sobre" class="bg-primary-50/60">
+  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 sm:py-16 md:grid-cols-2 md:items-center">
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-widest text-primary-900">Sobre nós</p>
+      <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+        Controle de pragas feito com responsabilidade
+      </h2>
+      <div class="mt-4 max-w-prose space-y-4 text-base leading-relaxed text-slate-700">
+        {copy.split(/\n\n+/).map((paragrafo) => (
+          <p>{paragrafo.trim()}</p>
+        ))}
+      </div>
+
+      <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+        <li class="flex items-start gap-2">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="mt-0.5 h-5 w-5 flex-none text-primary-900">
+            <path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 1 1 1.4-1.4L9 11.6l6.3-6.3a1 1 0 0 1 1.4 0Z" clip-rule="evenodd"/>
+          </svg>
+          <span class="text-sm text-slate-700">Produtos registrados Anvisa</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="mt-0.5 h-5 w-5 flex-none text-primary-900">
+            <path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 1 1 1.4-1.4L9 11.6l6.3-6.3a1 1 0 0 1 1.4 0Z" clip-rule="evenodd"/>
+          </svg>
+          <span class="text-sm text-slate-700">Equipe técnica certificada</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="mt-0.5 h-5 w-5 flex-none text-primary-900">
+            <path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 1 1 1.4-1.4L9 11.6l6.3-6.3a1 1 0 0 1 1.4 0Z" clip-rule="evenodd"/>
+          </svg>
+          <span class="text-sm text-slate-700">Garantia escrita</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="mt-0.5 h-5 w-5 flex-none text-primary-900">
+            <path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 1 1 1.4-1.4L9 11.6l6.3-6.3a1 1 0 0 1 1.4 0Z" clip-rule="evenodd"/>
+          </svg>
+          <span class="text-sm text-slate-700">Atendimento em até 24h</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="relative aspect-[4/3] overflow-hidden rounded-xl border border-primary-100 bg-primary-100/60 shadow-sm md:aspect-[5/4]">
+      <!-- Placeholder temático SVG — Leonardo pode trocar por foto real -->
+      <svg
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 500 400"
+        class="absolute inset-0 h-full w-full"
+      >
+        <defs>
+          <linearGradient id="sobre-bg" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stop-color="#1b5e20" />
+            <stop offset="1" stop-color="#2e7d32" />
+          </linearGradient>
+        </defs>
+        <rect width="500" height="400" fill="url(#sobre-bg)" />
+        <g fill="#c8e6c9" opacity="0.85">
+          <circle cx="120" cy="130" r="60" />
+          <rect x="200" y="80" width="220" height="140" rx="12" />
+          <rect x="60" y="230" width="380" height="100" rx="12" />
+        </g>
+        <g fill="#ffffff">
+          <text x="250" y="135" font-family="Inter, sans-serif" font-size="28" font-weight="700" text-anchor="middle">Técnicos certificados</text>
+          <text x="250" y="170" font-family="Inter, sans-serif" font-size="18" text-anchor="middle" opacity="0.85">Atendimento Campo Grande/MS</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>

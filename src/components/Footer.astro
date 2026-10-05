@@ -1,0 +1,76 @@
+---
+import { siteConfig } from '../config/siteConfig';
+
+const year = new Date().getFullYear();
+---
+<footer class="mt-16 border-t border-primary-100 bg-primary-900 text-primary-50">
+  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3">
+    <!-- NAP -->
+    <section aria-labelledby="footer-contato">
+      <h2 id="footer-contato" class="text-base font-bold uppercase tracking-wide text-white">
+        {siteConfig.nome}
+      </h2>
+      <address class="mt-4 not-italic text-sm leading-6 text-primary-100">
+        <p>{siteConfig.endereco.rua}</p>
+        <p>{siteConfig.endereco.bairro}</p>
+        <p>{siteConfig.endereco.cidade} — {siteConfig.endereco.estado}</p>
+        <p>CEP {siteConfig.endereco.cep}</p>
+        <p class="mt-3">
+          <a
+            href={siteConfig.whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-11 items-center gap-2 font-semibold text-white underline underline-offset-4 hover:text-primary-100"
+          >
+            WhatsApp: {siteConfig.whatsapp}
+          </a>
+        </p>
+      </address>
+    </section>
+
+    <!-- Serviços -->
+    <section aria-labelledby="footer-servicos">
+      <h2 id="footer-servicos" class="text-base font-bold uppercase tracking-wide text-white">
+        Serviços em Campo Grande
+      </h2>
+      <ul class="mt-4 space-y-2 text-sm">
+        {siteConfig.servicos.map((servico) => (
+          <li>
+            <a
+              href={`/${servico.slug}/campo-grande`}
+              class="inline-flex min-h-11 items-center text-primary-100 hover:text-white hover:underline"
+            >
+              {servico.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Cidades -->
+    <section aria-labelledby="footer-cidades">
+      <h2 id="footer-cidades" class="text-base font-bold uppercase tracking-wide text-white">
+        Cidades Atendidas
+      </h2>
+      <ul class="mt-4 space-y-2 text-sm">
+        {siteConfig.cidades.map((cidade) => (
+          <li>
+            <a
+              href={`/dedetizacao-residencial/${cidade.slug}`}
+              class="inline-flex min-h-11 items-center text-primary-100 hover:text-white hover:underline"
+            >
+              {cidade.label} — MS
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
+
+  <div class="border-t border-primary-800">
+    <div class="mx-auto flex max-w-6xl flex-col items-start justify-between gap-2 px-4 py-6 text-xs text-primary-100 sm:flex-row sm:items-center sm:px-6">
+      <p>© {year} {siteConfig.nome}. Todos os direitos reservados.</p>
+      <p>Atendimento Campo Grande/MS e região.</p>
+    </div>
+  </div>
+</footer>

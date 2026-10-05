@@ -1,0 +1,122 @@
+---
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/inter/800.css';
+
+import Seo from '../components/Seo.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../config/siteConfig';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  jsonLd?: object | object[];
+  noindex?: boolean;
+  includeDefaultLocalBusiness?: boolean;
+  areaServed?: string[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage,
+  jsonLd,
+  noindex = false,
+  includeDefaultLocalBusiness = true,
+  areaServed
+} = Astro.props;
+
+// LocalBusiness JSON-LD default (presente em TODAS as páginas, com @id consistente)
+const localBusiness = {
+  "@context": "https://schema.org",
+  "@type": "PestControl",
+  "@id": `${siteConfig.url.replace(/\/$/, '')}#business`,
+  "name": siteConfig.nome,
+  "url": siteConfig.url,
+  "telephone": siteConfig.whatsapp,
+  "image": `${siteConfig.url}/og-default.jpg`,
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": siteConfig.endereco.rua,
+    "addressLocality": siteConfig.endereco.cidade,
+    "addressRegion": siteConfig.endereco.estado,
+    "postalCode": siteConfig.endereco.cep,
+    "addressCountry": "BR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": siteConfig.geo.latitude,
+    "longitude": siteConfig.geo.longitude
+  },
+  "areaServed": (areaServed && areaServed.length > 0
+    ? areaServed
+    : siteConfig.cidades.map((c) => c.label)
+  ).map((label) => ({ "@type": "City", "name": label })),
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Saturday"],
+      "opens": "08:00",
+      "closes": "12:00"
+    }
+  ],
+  "sameAs": [siteConfig.whatsappLink]
+};
+
+const extraJsonLd = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const allJsonLd = includeDefaultLocalBusiness
+  ? [localBusiness, ...extraJsonLd]
+  : extraJsonLd;
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <Seo
+      title={title}
+      description={description}
+      canonical={canonical}
+      ogImage={ogImage}
+      noindex={noindex}
+      jsonLd={allJsonLd}
+    />
+  </head>
+  <body class="flex min-h-screen flex-col bg-white font-sans text-slate-900 antialiased">
+    <a href="#conteudo" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary-900 focus:px-4 focus:py-2 focus:text-white">
+      Pular para o conteúdo
+    </a>
+    <Header />
+    <main id="conteudo" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    color-scheme: light;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+</style>

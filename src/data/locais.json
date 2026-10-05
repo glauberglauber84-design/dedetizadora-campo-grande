@@ -1,0 +1,55 @@
+[
+  { "servico": "dedetizacao-residencial", "servicoLabel": "Dedetização Residencial", "cidade": "campo-grande", "cidadeLabel": "Campo Grande", "estado": "MS", "principal": true },
+  { "servico": "dedetizacao-residencial", "servicoLabel": "Dedetização Residencial", "cidade": "sidrolandia", "cidadeLabel": "Sidrolândia", "estado": "MS", "principal": false },
+  { "servico": "dedetizacao-residencial", "servicoLabel": "Dedetização Residencial", "cidade": "terenos", "cidadeLabel": "Terenos", "estado": "MS", "principal": false },
+  { "servico": "dedetizacao-residencial", "servicoLabel": "Dedetização Residencial", "cidade": "nova-almeida", "cidadeLabel": "Nova Almeida", "estado": "MS", "principal": false },
+  { "servico": "dedetizacao-residencial", "servicoLabel": "Dedetização Residencial", "cidade": "jaraguari", "cidadeLabel": "Jaraguari", "estado": "MS", "principal": false },
+
+  { "servico": "dedetizacao-comercial", "servicoLabel": "Dedetização Comercial", "cidade": "campo-grande", "cidadeLabel": "Campo Grande", "estado": "MS", "principal": false },
+  { "servico": "dedetizacao-comercial", "servicoLabel": "Dedetização Comercial", "cidade": "sidrolandia", "cidadeLabel": "Sidrolândia", "estado": "MS", "principal": false },
+  { "servico": "dedetizacao-comercial", "servicoLabel": "Dedetização Comercial", "cidade": "terenos", "cidadeLabel": "Terenos", "estado": "MS", "principal": false },
+  { "servico": "dedetizacao-comercial", "servicoLabel": "Dedetização Comercial", "cidade": "nova-almeida", "cidadeLabel": "Nova Almeida", "estado": "MS", "principal": false },
+  { "servico": "dedetizacao-comercial", "servicoLabel": "Dedetização Comercial", "cidade": "jaraguari", "cidadeLabel": "Jaraguari", "estado": "MS", "principal": false },
+
+  { "servico": "controle-cupins", "servicoLabel": "Controle de Cupins (Descupinização)", "cidade": "campo-grande", "cidadeLabel": "Campo Grande", "estado": "MS", "principal": false },
+  { "servico": "controle-cupins", "servicoLabel": "Controle de Cupins (Descupinização)", "cidade": "sidrolandia", "cidadeLabel": "Sidrolândia", "estado": "MS", "principal": false },
+  { "servico": "controle-cupins", "servicoLabel": "Controle de Cupins (Descupinização)", "cidade": "terenos", "cidadeLabel": "Terenos", "estado": "MS", "principal": false },
+  { "servico": "controle-cupins", "servicoLabel": "Controle de Cupins (Descupinização)", "cidade": "nova-almeida", "cidadeLabel": "Nova Almeida", "estado": "MS", "principal": false },
+  { "servico": "controle-cupins", "servicoLabel": "Controle de Cupins (Descupinização)", "cidade": "jaraguari", "cidadeLabel": "Jaraguari", "estado": "MS", "principal": false },
+
+  { "servico": "desinsetizacao", "servicoLabel": "Desinsetização (Baratas, Formigas, Aranhas, Escorpiões)", "cidade": "campo-grande", "cidadeLabel": "Campo Grande", "estado": "MS", "principal": false },
+  { "servico": "desinsetizacao", "servicoLabel": "Desinsetização (Baratas, Formigas, Aranhas, Escorpiões)", "cidade": "sidrolandia", "cidadeLabel": "Sidrolândia", "estado": "MS", "principal": false },
+  { "servico": "desinsetizacao", "servicoLabel": "Desinsetização (Baratas, Formigas, Aranhas, Escorpiões)", "cidade": "terenos", "cidadeLabel": "Terenos", "estado": "MS", "principal": false },
+  { "servico": "desinsetizacao", "servicoLabel": "Desinsetização (Baratas, Formigas, Aranhas, Escorpiões)", "cidade": "nova-almeida", "cidadeLabel": "Nova Almeida", "estado": "MS", "principal": false },
+  { "servico": "desinsetizacao", "servicoLabel": "Desinsetização (Baratas, Formigas, Aranhas, Escorpiões)", "cidade": "jaraguari", "cidadeLabel": "Jaraguari", "estado": "MS", "principal": false },
+
+  { "servico": "desratizacao", "servicoLabel": "Desratização (Ratos e Roedores)", "cidade": "campo-grande", "cidadeLabel": "Campo Grande", "estado": "MS", "principal": false },
+  { "servico": "desratizacao", "servicoLabel": "Desratização (Ratos e Roedores)", "cidade": "sidrolandia", "cidadeLabel": "Sidrolândia", "estado": "MS", "principal": false },
+  { "servico": "desratizacao", "servicoLabel": "Desratização (Ratos e Roedores)", "cidade": "terenos", "cidadeLabel": "Terenos", "estado": "MS", "principal": false },
+  { "servico": "desratizacao", "servicoLabel": "Desratização (Ratos e Roedores)", "cidade": "nova-almeida", "cidadeLabel": "Nova Almeida", "estado": "MS", "principal": false },
+  { "servico": "desratizacao", "servicoLabel": "Desratização (Ratos e Roedores)", "cidade": "jaraguari", "cidadeLabel": "Jaraguari", "estado": "MS", "principal": false },
+
+  { "servico": "controle-mosquitos", "servicoLabel": "Controle de Mosquitos e Pernilongos", "cidade": "campo-grande", "cidadeLabel": "Campo Grande", "estado": "MS", "principal": false },
+  { "servico": "controle-mosquitos", "servicoLabel": "Controle de Mosquitos e Pernilongos", "cidade": "sidrolandia", "cidadeLabel": "Sidrolândia", "estado": "MS", "principal": false },
+  { "servico": "controle-mosquitos", "servicoLabel": "Controle de Mosquitos e Pernilongos", "cidade": "terenos", "cidadeLabel": "Terenos", "estado": "MS", "principal": false },
+  { "servico": "controle-mosquitos", "servicoLabel": "Controle de Mosquitos e Pernilongos", "cidade": "nova-almeida", "cidadeLabel": "Nova Almeida", "estado": "MS", "principal": false },
+  { "servico": "controle-mosquitos", "servicoLabel": "Controle de Mosquitos e Pernilongos", "cidade": "jaraguari", "cidadeLabel": "Jaraguari", "estado": "MS", "principal": false },
+
+  { "servico": "barreira-quimica-cupins", "servicoLabel": "Barreira Química Contra Cupins", "cidade": "campo-grande", "cidadeLabel": "Campo Grande", "estado": "MS", "principal": false },
+  { "servico": "barreira-quimica-cupins", "servicoLabel": "Barreira Química Contra Cupins", "cidade": "sidrolandia", "cidadeLabel": "Sidrolândia", "estado": "MS", "principal": false },
+  { "servico": "barreira-quimica-cupins", "servicoLabel": "Barreira Química Contra Cupins", "cidade": "terenos", "cidadeLabel": "Terenos", "estado": "MS", "principal": false },
+  { "servico": "barreira-quimica-cupins", "servicoLabel": "Barreira Química Contra Cupins", "cidade": "nova-almeida", "cidadeLabel": "Nova Almeida", "estado": "MS", "principal": false },
+  { "servico": "barreira-quimica-cupins", "servicoLabel": "Barreira Química Contra Cupins", "cidade": "jaraguari", "cidadeLabel": "Jaraguari", "estado": "MS", "principal": false },
+
+  { "servico": "pragas-urbanas-empresas", "servicoLabel": "Controle de Pragas Urbanas para Empresas e Condomínios", "cidade": "campo-grande", "cidadeLabel": "Campo Grande", "estado": "MS", "principal": false },
+  { "servico": "pragas-urbanas-empresas", "servicoLabel": "Controle de Pragas Urbanas para Empresas e Condomínios", "cidade": "sidrolandia", "cidadeLabel": "Sidrolândia", "estado": "MS", "principal": false },
+  { "servico": "pragas-urbanas-empresas", "servicoLabel": "Controle de Pragas Urbanas para Empresas e Condomínios", "cidade": "terenos", "cidadeLabel": "Terenos", "estado": "MS", "principal": false },
+  { "servico": "pragas-urbanas-empresas", "servicoLabel": "Controle de Pragas Urbanas para Empresas e Condomínios", "cidade": "nova-almeida", "cidadeLabel": "Nova Almeida", "estado": "MS", "principal": false },
+  { "servico": "pragas-urbanas-empresas", "servicoLabel": "Controle de Pragas Urbanas para Empresas e Condomínios", "cidade": "jaraguari", "cidadeLabel": "Jaraguari", "estado": "MS", "principal": false },
+
+  { "servico": "sanitizacao-desinfeccao", "servicoLabel": "Sanitização e Desinfecção de Ambientes", "cidade": "campo-grande", "cidadeLabel": "Campo Grande", "estado": "MS", "principal": false },
+  { "servico": "sanitizacao-desinfeccao", "servicoLabel": "Sanitização e Desinfecção de Ambientes", "cidade": "sidrolandia", "cidadeLabel": "Sidrolândia", "estado": "MS", "principal": false },
+  { "servico": "sanitizacao-desinfeccao", "servicoLabel": "Sanitização e Desinfecção de Ambientes", "cidade": "terenos", "cidadeLabel": "Terenos", "estado": "MS", "principal": false },
+  { "servico": "sanitizacao-desinfeccao", "servicoLabel": "Sanitização e Desinfecção de Ambientes", "cidade": "nova-almeida", "cidadeLabel": "Nova Almeida", "estado": "MS", "principal": false },
+  { "servico": "sanitizacao-desinfeccao", "servicoLabel": "Sanitização e Desinfecção de Ambientes", "cidade": "jaraguari", "cidadeLabel": "Jaraguari", "estado": "MS", "principal": false }
+]

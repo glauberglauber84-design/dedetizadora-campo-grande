@@ -1,0 +1,76 @@
+---
+import { siteConfig } from '../config/siteConfig';
+
+interface Props {
+  h1: string;
+  subtitle: string;
+  cidade?: string;
+}
+
+const { h1, subtitle, cidade } = Astro.props;
+---
+<section class="relative isolate overflow-hidden bg-primary-900 text-white">
+  <!-- Padrão sutil de fundo (SVG inline, sem shift) -->
+  <svg
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 h-full w-full opacity-10 mix-blend-overlay"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <pattern id="hero-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M0 40V0h40" fill="none" stroke="white" stroke-width="1" />
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#hero-grid)" />
+  </svg>
+
+  <div class="relative mx-auto flex max-w-6xl flex-col gap-6 px-4 py-12 sm:px-6 sm:py-16 md:py-24">
+    {cidade && (
+      <p class="text-xs font-semibold uppercase tracking-widest text-primary-100">
+        {cidade} — MS
+      </p>
+    )}
+    <h1 class="max-w-3xl text-3xl font-extrabold leading-tight text-white sm:text-4xl md:text-5xl">
+      {h1}
+    </h1>
+    <p class="max-w-prose text-base leading-relaxed text-primary-50 sm:text-lg">
+      {subtitle}
+    </p>
+
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+      <a
+        href={siteConfig.whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Falar no WhatsApp ${siteConfig.whatsapp} — orçamento rápido`}
+        class="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-white px-6 py-3 text-base font-bold text-primary-900 shadow-md transition hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-900"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5" aria-hidden="true">
+          <path d="M20.5 3.5A11 11 0 0 0 3.4 17.3L2 22l4.9-1.3a11 11 0 0 0 16.5-9.5 10.9 10.9 0 0 0-2.9-7.7Zm-8.5 17a9 9 0 0 1-4.6-1.3l-.3-.2-2.9.8.8-2.8-.2-.3A9 9 0 1 1 12 20.5Z"/>
+        </svg>
+        <span>Orçamento no WhatsApp</span>
+      </a>
+      <a
+        href="#contato"
+        class="inline-flex min-h-12 items-center justify-center rounded-md border-2 border-white/80 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-900"
+      >
+        Pedir visita técnica
+      </a>
+    </div>
+
+    <ul class="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-sm text-primary-50">
+      <li class="inline-flex items-center gap-2">
+        <span aria-hidden="true" class="inline-block h-2 w-2 rounded-full bg-primary-200"></span>
+        Atendimento rápido
+      </li>
+      <li class="inline-flex items-center gap-2">
+        <span aria-hidden="true" class="inline-block h-2 w-2 rounded-full bg-primary-200"></span>
+        Equipe certificada
+      </li>
+      <li class="inline-flex items-center gap-2">
+        <span aria-hidden="true" class="inline-block h-2 w-2 rounded-full bg-primary-200"></span>
+        Produtos registrados Anvisa
+      </li>
+    </ul>
+  </div>
+</section>

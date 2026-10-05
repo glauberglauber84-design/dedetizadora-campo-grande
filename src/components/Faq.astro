@@ -1,0 +1,74 @@
+---
+interface FaqItem {
+  pergunta: string;
+  resposta: string;
+}
+
+interface Props {
+  itens?: FaqItem[];
+  titulo?: string;
+}
+
+const faqDefault: FaqItem[] = [
+  {
+    pergunta: "A dedetização é segura para crianças e animais?",
+    resposta: "Sim. Trabalhamos com produtos registrados na Anvisa e seguimos protocolos de aplicação que permitem o retorno seguro ao ambiente após o tempo recomendado pelo técnico (em geral de 2 a 4 horas, com ventilação)."
+  },
+  {
+    pergunta: "Preciso sair de casa durante o serviço?",
+    resposta: "Normalmente sim, durante a aplicação e o tempo de ventilação. O técnico orienta no local qual é o período adequado conforme o tipo de serviço contratado."
+  },
+  {
+    pergunta: "Qual é a garantia do serviço?",
+    resposta: "Oferecemos garantia escrita conforme o tipo de praga e serviço contratado. Em geral: 3 meses para desinsetização, 6 meses para desratização e até 5 anos para barreira química contra cupins."
+  },
+  {
+    pergunta: "Vocês atendem quais cidades?",
+    resposta: "Atendemos Campo Grande, Sidrolândia, Terenos, Nova Almeida e Jaraguari, com equipes de plantão para emergências na região metropolitana de Campo Grande/MS."
+  }
+];
+
+const { itens, titulo = "Perguntas frequentes" } = Astro.props;
+const faq = itens && itens.length > 0 ? itens : faqDefault;
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faq.map((item) => ({
+    "@type": "Question",
+    "name": item.pergunta,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.resposta
+    }
+  }))
+};
+---
+<section id="faq" class="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
+  <div class="mx-auto max-w-prose text-center">
+    <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">{titulo}</h2>
+    <p class="mt-3 text-base leading-relaxed text-slate-700">
+      Dúvidas comuns sobre dedetização e controle de pragas em Campo Grande.
+    </p>
+  </div>
+
+  <ul class="mt-8 space-y-3">
+    {faq.map((item, idx) => (
+      <li>
+        <details class="group rounded-lg border border-slate-200 bg-white shadow-sm open:border-primary-200 open:shadow-md" open={idx === 0}>
+          <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 rounded-lg px-5 py-4 text-base font-semibold text-slate-900 outline-none focus-visible:ring-2 focus-visible:ring-primary-900">
+            <span>{item.pergunta}</span>
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5 flex-none text-primary-900 transition-transform group-open:rotate-180">
+              <path fill-rule="evenodd" d="M5.3 7.3a1 1 0 0 1 1.4 0L10 10.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 0-1.4Z" clip-rule="evenodd"/>
+            </svg>
+          </summary>
+          <div class="px-5 pb-5 text-sm leading-6 text-slate-700">
+            <p>{item.resposta}</p>
+          </div>
+        </details>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />

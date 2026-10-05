@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServicosGrid from '../components/ServicosGrid.astro';
+import Sobre from '../components/Sobre.astro';
+import ComoEncontrar from '../components/ComoEncontrar.astro';
+import BlogGrid from '../components/BlogGrid.astro';
+import Faq from '../components/Faq.astro';
+import Contato from '../components/Contato.astro';
+import { siteConfig } from '../config/siteConfig';
+
+// Tenta carregar o JSON da Maria (dedetizacao-residencial-campo-grande.json)
+let conteudo: any;
+try {
+  conteudo = (await import('../data/pages/dedetizacao-residencial-campo-grande.json')).default;
+} catch (e) {
+  conteudo = {
+    title: `${siteConfig.nome} — Controle de pragas em Campo Grande/MS`,
+    description: siteConfig.descricaoCurta,
+    h1: "Dedetizadora em Campo Grande/MS — orçamento rápido pelo WhatsApp",
+    hero_subtitle: "Dedetização residencial e comercial com equipe certificada, produtos registrados Anvisa e garantia escrita. Atendimento em Campo Grande e região.",
+    sobre_texto: "",
+    faq: []
+  };
+}
+---
+<BaseLayout
+  title={conteudo.title}
+  description={conteudo.description}
+  canonical="/"
+>
+  <Hero h1={conteudo.h1} subtitle={conteudo.hero_subtitle} cidade="Campo Grande" />
+  <ServicosGrid cidade="campo-grande" />
+  <Sobre texto={conteudo.sobre_texto} />
+  <ComoEncontrar cidade="Campo Grande" />
+  <BlogGrid />
+  <Faq itens={conteudo.faq} />
+  <Contato />
+</BaseLayout>

@@ -1,0 +1,112 @@
+---
+import { siteConfig } from '../config/siteConfig';
+
+interface Props {
+  titulo?: string;
+  descricao?: string;
+}
+
+const {
+  titulo = "Fale com a gente",
+  descricao = "Envie sua mensagem — o botão abre direto no WhatsApp com o texto pré-preenchido."
+} = Astro.props;
+
+// Extrai só os dígitos pra montar o link wa.me no submit
+const waNumber = siteConfig.whatsappLink.replace(/\D/g, '');
+---
+<section id="contato" class="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
+  <div class="mx-auto max-w-prose text-center">
+    <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">{titulo}</h2>
+    <p class="mt-3 text-base leading-relaxed text-slate-700">{descricao}</p>
+  </div>
+
+  <form
+    id="form-contato"
+    class="mx-auto mt-8 max-w-2xl space-y-5 rounded-xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"
+    novalidate
+    data-wa-number={waNumber}
+  >
+    <div>
+      <label for="contato-nome" class="block text-sm font-semibold text-slate-900">
+        Nome <span aria-hidden="true" class="text-primary-900">*</span>
+      </label>
+      <input
+        id="contato-nome"
+        name="nome"
+        type="text"
+        required
+        autocomplete="name"
+        class="mt-2 block w-full min-h-12 rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 shadow-sm focus:border-primary-900 focus:outline-none focus:ring-2 focus:ring-primary-900"
+      />
+    </div>
+
+    <div>
+      <label for="contato-telefone" class="block text-sm font-semibold text-slate-900">
+        Telefone / WhatsApp <span aria-hidden="true" class="text-primary-900">*</span>
+      </label>
+      <input
+        id="contato-telefone"
+        name="telefone"
+        type="tel"
+        required
+        autocomplete="tel"
+        inputmode="tel"
+        placeholder="(67) 99999-9999"
+        class="mt-2 block w-full min-h-12 rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 shadow-sm focus:border-primary-900 focus:outline-none focus:ring-2 focus:ring-primary-900"
+      />
+    </div>
+
+    <div>
+      <label for="contato-mensagem" class="block text-sm font-semibold text-slate-900">
+        Mensagem
+      </label>
+      <textarea
+        id="contato-mensagem"
+        name="mensagem"
+        rows="4"
+        class="mt-2 block w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 shadow-sm focus:border-primary-900 focus:outline-none focus:ring-2 focus:ring-primary-900"
+        placeholder="Conte brevemente o que você precisa"
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      class="inline-flex w-full min-h-12 items-center justify-center gap-2 rounded-md bg-primary-900 px-6 py-3 text-base font-bold text-white shadow transition hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-primary-900 focus:ring-offset-2"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5" aria-hidden="true">
+        <path d="M20.5 3.5A11 11 0 0 0 3.4 17.3L2 22l4.9-1.3a11 11 0 0 0 16.5-9.5 10.9 10.9 0 0 0-2.9-7.7Z"/>
+      </svg>
+      Enviar pelo WhatsApp
+    </button>
+
+    <p class="text-xs text-slate-500">
+      Ao enviar, você será direcionado para o WhatsApp com sua mensagem pronta.
+      Nenhum dado é armazenado neste site.
+    </p>
+  </form>
+</section>
+
+<script is:inline>
+  (function () {
+    const form = document.getElementById('form-contato');
+    if (!form) return;
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      const nome = (form.querySelector('#contato-nome')?.value || '').trim();
+      const tel = (form.querySelector('#contato-telefone')?.value || '').trim();
+      const msg = (form.querySelector('#contato-mensagem')?.value || '').trim();
+      if (!nome || !tel) {
+        alert('Por favor preencha nome e telefone.');
+        return;
+      }
+      const waNumber = form.getAttribute('data-wa-number') || '';
+      const texto =
+        'Olá! Meu nome é ' + nome +
+        '. Telefone: ' + tel +
+        (msg ? '. Mensagem: ' + msg : '') +
+        '. Vim pelo site.';
+      const url = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(texto);
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+  })();
+</script>

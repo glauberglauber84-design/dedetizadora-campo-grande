@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import ServicosGrid from '../../components/ServicosGrid.astro';
+import Sobre from '../../components/Sobre.astro';
+import ComoEncontrar from '../../components/ComoEncontrar.astro';
+import BlogGrid from '../../components/BlogGrid.astro';
+import Faq from '../../components/Faq.astro';
+import Contato from '../../components/Contato.astro';
+import { siteConfig } from '../../config/siteConfig';
+import locais from '../../data/locais.json';
+
+type Local = {
+  servico: string;
+  servicoLabel: string;
+  cidade: string;
+  cidadeLabel: string;
+  estado: string;
+  principal: boolean;
+};
+
+export async function getStaticPaths() {
+  const data = (locais as Local[]);
+  return data.map((item) => ({
+    params: { servico: item.servico, cidade: item.cidade },
+    props: { local: item }
+  }));
+}
+
+const { local } = Astro.props as { local: Local };
+
+// Carrega conteúdo da Maria com fallback mínimo
+let conteudo: any;
+try {
+  // Import dinâmico resolvido no build por Vite
+  const mod: any = await import(`../../data/pages/${local.servico}-${local.cidade}.json`);
+  conteudo = mod.default;
+} catch (e) {
+  conteudo = {
+    title: `${local.servicoLabel} em ${local.cidadeLabel}/${local.estado} — ${siteConfig.nome}`,
+    description: `${local.servicoLabel} em ${local.cidadeLabel}/${local.estado}. Orçamento rápido pelo WhatsApp, equipe certificada e produtos registrados Anvisa.`,
+    h1: `${local.servicoLabel} em ${local.cidadeLabel}`,
+    hero_subtitle: `Atendimento rápido em ${local.cidadeLabel} e região com produtos registrados Anvisa, equipe certificada e garantia escrita.`,
+    sobre_texto: "",
+    faq: []
+  };
+}
+
+const canonical = `/${local.servico}/${local.cidade}`;
+
+// Breadcrumb JSON-LD
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Início", "item": siteConfig.url + "/" },
+    { "@type": "ListItem", "position": 2, "name": local.servicoLabel, "item": `${siteConfig.url}/${local.servico}/campo-grande` },
+    { "@type": "ListItem", "position": 3, "name": local.cidadeLabel, "item": `${siteConfig.url}${canonical}` }
+  ]
+};
+
+// Service schema específico da página
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": local.servicoLabel,
+  "provider": { "@id": `${siteConfig.url.replace(/\/$/, '')}#business` },
+  "areaServed": { "@type": "City", "name": local.cidadeLabel },
+  "name": `${local.servicoLabel} em ${local.cidadeLabel}`,
+  "description": conteudo.description,
+  "url": `${siteConfig.url}${canonical}`
+};
+---
+<BaseLayout
+  title={conteudo.title}
+  description={conteudo.description}
+  canonical={canonical}
+  areaServed={[local.cidadeLabel]}
+  jsonLd={[breadcrumb, serviceSchema]}
+>
+  <Hero h1={conteudo.h1} subtitle={conteudo.hero_subtitle} cidade={local.cidadeLabel} />
+
+  <!-- Breadcrumb visual simples -->
+  <nav aria-label="Trilha de navegação" class="mx-auto max-w-6xl px-4 pt-6 text-sm text-slate-600 sm:px-6">
+    <ol class="flex flex-wrap items-center gap-1">
+      <li><a href="/" class="hover:text-primary-900 hover:underline">Início</a></li>
+      <li aria-hidden="true" class="px-1">/</li>
+      <li><a href={`/${local.servico}/campo-grande`} class="hover:text-primary-900 hover:underline">{local.servicoLabel}</a></li>
+      <li aria-hidden="true" class="px-1">/</li>
+      <li aria-current="page" class="font-semibold text-slate-900">{local.cidadeLabel}</li>
+    </ol>
+  </nav>
+
+  <ServicosGrid cidade={local.cidade} titulo="Outros serviços nesta região" />
+  <Sobre texto={conteudo.sobre_texto} />
+  <ComoEncontrar cidade={local.cidadeLabel} />
+  <Faq itens={conteudo.faq} />
+  <Contato />
+</BaseLayout>

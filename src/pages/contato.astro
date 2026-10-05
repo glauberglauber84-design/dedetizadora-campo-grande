@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Contato from '../components/Contato.astro';
+import ComoEncontrar from '../components/ComoEncontrar.astro';
+import { siteConfig } from '../config/siteConfig';
+
+const title = `Contato — ${siteConfig.nome}`;
+const description = `Fale com a ${siteConfig.nome} pelo WhatsApp ${siteConfig.whatsapp} ou pelo formulário. Orçamento rápido para controle de pragas em Campo Grande e região.`;
+---
+<BaseLayout title={title} description={description} canonical="/contato">
+  <Hero
+    h1="Fale com a Dedetizadora Campo Grande"
+    subtitle="Resposta rápida pelo WhatsApp em horário comercial e plantão 24h para emergências."
+    cidade="Campo Grande"
+  />
+  <Contato
+    titulo="Peça seu orçamento"
+    descricao="Preencha os campos abaixo. Ao enviar, a mensagem abre pronta no WhatsApp e nosso técnico retorna rapidinho."
+  />
+  <ComoEncontrar cidade="Campo Grande" />
+</BaseLayout>
