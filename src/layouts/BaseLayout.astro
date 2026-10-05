@@ -108,9 +108,28 @@ const allJsonLd = includeDefaultLocalBusiness
 <style is:global>
   :root {
     color-scheme: light;
+    /* Garante que form-controls respeitem o esquema de cor */
+    --focus-ring: #1b5e20;
   }
   html {
     scroll-behavior: smooth;
+    /* Previne font-boost em iOS que quebra escala tipográfica */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  body {
+    /* text-wrap: pretty melhora quebras em parágrafos (progressive) */
+    text-wrap: pretty;
+  }
+  h1, h2, h3 {
+    /* Títulos com balance evitam viúvas na última linha */
+    text-wrap: balance;
+  }
+  /* Focus-visible global — sempre com cor da marca, nunca azul do browser */
+  :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+    border-radius: 4px;
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }

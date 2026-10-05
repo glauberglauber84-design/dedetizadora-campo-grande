@@ -23,6 +23,20 @@ export default {
           dark: '#128c7e'
         }
       },
+      // Escala modular 1.25 (major third) a partir de 16px base.
+      // 12.8 / 14 / 16 / 20 / 25 / 31 / 39 / 49 / 61
+      // sm fica em 14px por legibilidade (não cai em 12.8 duas vezes).
+      fontSize: {
+        xs:   ['12.8px', { lineHeight: '1.5' }],
+        sm:   ['14px',   { lineHeight: '1.5' }],
+        base: ['16px',   { lineHeight: '1.6' }],
+        lg:   ['20px',   { lineHeight: '1.5' }],
+        xl:   ['25px',   { lineHeight: '1.4' }],
+        '2xl': ['31px',  { lineHeight: '1.3' }],
+        '3xl': ['39px',  { lineHeight: '1.2' }],
+        '4xl': ['49px',  { lineHeight: '1.15' }],
+        '5xl': ['61px',  { lineHeight: '1.1' }]
+      },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif']
       },

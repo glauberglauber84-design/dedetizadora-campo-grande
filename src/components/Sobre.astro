@@ -15,10 +15,10 @@ const copy = texto && texto.trim().length > 0 ? texto : textoDefault;
   <div class="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 sm:py-16 md:grid-cols-2 md:items-center">
     <div>
       <p class="text-xs font-semibold uppercase tracking-widest text-primary-900">Sobre nós</p>
-      <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+      <h2 class="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">
         Controle de pragas feito com responsabilidade
       </h2>
-      <div class="mt-4 max-w-prose space-y-4 text-base leading-relaxed text-slate-700">
+      <div class="mt-5 max-w-prose space-y-4 text-base text-slate-700">
         {copy.split(/\n\n+/).map((paragrafo) => (
           <p>{paragrafo.trim()}</p>
         ))}
