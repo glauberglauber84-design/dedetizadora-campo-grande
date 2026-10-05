@@ -164,3 +164,68 @@ Escreva em `.agents/notes/marivone-report.md`:
 Chama a verdade do jeito que ela é, Marivone.
 
 — Genilson
+
+---
+
+## Status pós-Leonardo (polish aplicado)
+
+**Branch:** `polish-site-local` · **Commit:** `2d3723e`
+**Base:** `master` (361e6b6 — Maria entregou 45 páginas)
+
+### P0 aplicados (direto, sem perguntar)
+
+1. **Tipografia modular 1.25** em `tailwind.config.mjs`: scale 12.8/14/16/20/25/31/39/49/61px com `line-height` por tamanho. Confirmado no CSS de produção: `font-size:12.8px .. 61px` presentes em `dist/_astro/*.css`.
+2. **Hierarquia aplicada** nos componentes:
+   - H1 Hero → `text-3xl md:text-5xl` (39→61px) com `tracking-tight`.
+   - H2 seções → `text-3xl sm:text-4xl` (39→49px) em ServicosGrid, Sobre, ComoEncontrar, Faq, BlogGrid, Contato, página sobre.
+   - H3 cards → `text-xl` (25px) em ServicosGrid, ComoEncontrar, BlogGrid, página sobre.
+3. **Contraste WCAG AA** — grep confirmou zero `text-slate-{300,400,500}` e `text-green-{300,400,500}` como texto. Troquei:
+   - `BlogGrid.astro`: `text-slate-500` → `text-slate-700` em descrição e badge "Em preparação".
+   - `Contato.astro`: `text-slate-500` → `text-slate-700` no disclaimer.
+   - `Hero.astro`: `border-white/80` → `border-white` no CTA secundário (Francis sinalizou contraste limítrofe).
+4. **CTA acima da dobra em 375px** — Hero `py-12 sm:py-16 md:py-24` → `py-10 sm:py-14 md:py-20`; H1 continua `text-3xl md:text-5xl` (não cresce em sm). Com Header (~56px) + mobile-nav (~44px), Hero inner cabe em ~540px dentro dos 567px disponíveis em iPhone SE.
+5. **Labels visíveis** — Contato já tinha `<label for>` acima de cada input (Francis). Confirmei, sem mudança.
+6. **Touch targets ≥44px** — 18 ocorrências de `min-h-11`/`min-h-12`/`h-11`/`h-12` em botões, links de nav e inputs. Zero regressão.
+7. **Fontes self-hosted** — `grep fonts.googleapis|fonts.gstatic` em `src/` e `dist/` retorna zero. `@fontsource/inter` importado em `BaseLayout.astro` (400/500/600/700/800).
+8. **Focus visível** — adicionado `:where(a,button,input,textarea,select,summary,[tabindex]):focus-visible { outline: 2px solid #1b5e20; outline-offset: 2px }` global em `BaseLayout.astro`. No Hero (fundo primary-900), CTAs usam `focus-visible:outline-white` explícito.
+9. **Imagens** — zero `<img>` em componentes (todos placeholders SVG inline por enquanto). Iframe do Google Maps em `ComoEncontrar.astro` já com `loading="lazy"` (Francis).
+10. **`lang="pt-BR"`** — presente em `BaseLayout.astro` linha 85.
+
+### P1 aplicados (microinterações sutis)
+
+- **Hero CTA WhatsApp**: `hover:-translate-y-0.5 hover:shadow-lg` com `motion-reduce:transform-none`, transition `duration-200 ease-out`.
+- **Hero CTA secundário**: hover sem translate (visita técnica), mas com transição suave.
+- **Header WhatsApp button**: hover translate + shadow bump.
+- **ServicosGrid cards**: já tinha `-translate-y-0.5`, adicionei `motion-reduce:transform-none` + `hover:border-primary-300` (era primary-200, agora mais perceptível), seta `→` desliza no hover com motion-reduce guard.
+- **Contato submit**: hover translate + shadow-lg + motion-reduce.
+- **Faq caret**: rotate 180° em open com motion-reduce guard.
+- **404 CTA primário**: hover translate + shadow-lg + motion-reduce.
+- **Globals**: `text-wrap: pretty` em body, `text-wrap: balance` em h1-h3 (progressive, zero regressão em browsers sem suporte).
+- **Fonte iOS**: `text-size-adjust:100%` pra evitar o font-boost do Safari que quebraria a escala.
+
+### Build
+
+- `npm run build` passou limpo em **980ms**. 49 páginas HTML, sitemap OK, zero warning.
+- Confirmei no CSS de produção que as 9 font-sizes da scale saem corretas.
+
+### Performance
+
+- **Não medido localmente** — Lighthouse/Chrome não disponíveis no PATH deste ambiente. Como só mexi em CSS/Tailwind (zero JS novo, zero dependência nova, mesmo DOM), a expectativa é **zero regressão** vs. baseline do Francis.
+- **Marivone roda Lighthouse na URL de produção** (ver seção 2 deste handoff).
+
+### Não mexi (fora de escopo)
+
+- Estrutura HTML dos componentes — território Francis.
+- Conteúdo dos JSONs em `src/data/pages/` — território Maria.
+- `siteConfig.ts` (NAP, URLs, lista de serviços) — NAP tem que ser idêntico onde aparece.
+- Imagens reais (ainda não existem — tudo SVG inline por enquanto).
+
+### Pra Marivone olhar com atenção
+
+- **Lighthouse mobile em produção**: Perf ≥90, A11y=100, SEO=100, Best Practices ≥95.
+- **Contraste visual** em todos os textos no site deployed (axe DevTools): zero violação.
+- **CTA WhatsApp acima da dobra em 375px** no site real (iPhone SE device mode). Se não couber, culpa é da fonte do subtítulo (Maria) ou do viewport do Chrome DevTools — não da estrutura.
+- **NAP idêntico** em Header, Footer e JSON-LD (`search.google.com/test/rich-results` em pelo menos 3 URLs: `/`, `/dedetizacao-residencial/campo-grande`, `/sobre`).
+- **Focus visível** com Tab navigation em teclado: cada link, botão, input e `<details>` do FAQ deve mostrar outline verde (ou branco no Hero/footer).
+- **Zoom 200%**: layout não quebra (texto-wrap: balance pode viuvar em viewports estreitos — se acontecer, documente, não é bloqueante).
+- **Testar `prefers-reduced-motion`** em sistema (System Preferences → Accessibility no macOS, Settings → Ease of Access no Windows). Com reduce ativo, hover translates e transições têm que virar 0.001ms (BaseLayout já tem a global rule).
