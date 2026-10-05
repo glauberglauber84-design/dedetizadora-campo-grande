@@ -21,3 +21,6 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .vscode/
+
+# agent handoffs (internal — não vai pro repo público)
+.agents/
