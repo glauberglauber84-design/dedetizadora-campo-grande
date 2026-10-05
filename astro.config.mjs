@@ -3,7 +3,7 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://dedetizadora-campo-grande.pages.dev',
+  site: 'https://dedetizadora-campo-grande.glauberglauber84.workers.dev',
   output: 'static',
   trailingSlash: 'ignore',
   integrations: [
