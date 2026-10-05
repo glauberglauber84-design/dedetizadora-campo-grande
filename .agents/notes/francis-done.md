@@ -32,4 +32,4 @@ Páginas serviço×cidade usam `await import()` dinâmico de `src/data/pages/${s
 
 ## Hash
 
-Preenchido abaixo após commit.
+`3021052`
