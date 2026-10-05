@@ -11,7 +11,7 @@ export const siteConfig = {
   },
   enderecoCompleto: "Rua Exemplo, 456 — Jardim dos Estados, Campo Grande — MS, CEP 79000-000",
   corPrimaria: "#1b5e20",
-  url: "https://dedetizadora-campo-grande.pages.dev",
+  url: "https://dedetizadora-campo-grande.glauberglauber84.workers.dev",
   // Lat/Long aproximada do centro de Campo Grande/MS (placeholder razoável)
   geo: {
     latitude: -20.4697,
