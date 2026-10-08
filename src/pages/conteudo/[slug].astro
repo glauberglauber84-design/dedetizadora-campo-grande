@@ -1,0 +1,105 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Contato from '../../components/Contato.astro';
+import { siteConfig } from '../../config/siteConfig';
+
+export async function getStaticPaths() {
+  const artigos = await getCollection('artigos', ({ data }) => !data.draft);
+  return artigos.map((artigo) => ({
+    params: { slug: artigo.slug },
+    props: { artigo },
+  }));
+}
+
+interface Props { artigo: CollectionEntry<'artigos'> }
+const { artigo } = Astro.props;
+const { Content } = await artigo.render();
+
+const title = `${artigo.data.title} | ${siteConfig.nome}`;
+const description = artigo.data.description;
+const canonical = `/conteudo/${artigo.slug}`;
+
+const categoriaLabel: Record<string, string> = {
+  cupim: 'Cupim',
+  baratas: 'Baratas',
+  ratos: 'Ratos',
+  mosquitos: 'Mosquitos',
+  escorpioes: 'Escorpiões',
+  formigas: 'Formigas',
+  prevencao: 'Prevenção',
+  geral: 'Geral',
+};
+
+const dateFmt = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+
+const jsonLdArticle = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: artigo.data.title,
+  description: artigo.data.description,
+  datePublished: artigo.data.pubDate.toISOString(),
+  dateModified: (artigo.data.updatedDate ?? artigo.data.pubDate).toISOString(),
+  author: { '@type': 'Organization', name: artigo.data.autor },
+  publisher: {
+    '@type': 'Organization',
+    name: siteConfig.nome,
+    logo: { '@type': 'ImageObject', url: `${siteConfig.url}/og-default.jpg` },
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': `${siteConfig.url}${canonical}` },
+  image: `${siteConfig.url}/og-default.jpg`,
+};
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonLd={jsonLdArticle}>
+  <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
+    <nav aria-label="Caminho" class="mb-6 text-sm text-slate-600">
+      <a href="/" class="hover:text-primary-900">Início</a>
+      <span aria-hidden="true" class="mx-2">›</span>
+      <a href="/conteudo" class="hover:text-primary-900">Conteúdo</a>
+      <span aria-hidden="true" class="mx-2">›</span>
+      <span class="text-slate-900">{artigo.data.title}</span>
+    </nav>
+
+    <header>
+      <span class="inline-flex items-center rounded-full bg-primary-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary-900">
+        {categoriaLabel[artigo.data.categoria]}
+      </span>
+      <h1 class="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{artigo.data.title}</h1>
+      <p class="mt-3 text-lg text-slate-700">{artigo.data.description}</p>
+      <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-600">
+        <span>Por {artigo.data.autor}</span>
+        <span aria-hidden="true">·</span>
+        <time datetime={artigo.data.pubDate.toISOString()}>
+          Publicado em {dateFmt.format(artigo.data.pubDate)}
+        </time>
+        {artigo.data.updatedDate && (
+          <>
+            <span aria-hidden="true">·</span>
+            <time datetime={artigo.data.updatedDate.toISOString()}>
+              Atualizado em {dateFmt.format(artigo.data.updatedDate)}
+            </time>
+          </>
+        )}
+      </div>
+    </header>
+
+    <div class="prose prose-slate mt-10 max-w-none prose-headings:text-slate-900 prose-h2:mt-10 prose-h2:text-2xl prose-h2:font-bold prose-h3:text-xl prose-p:text-base prose-p:leading-relaxed prose-a:text-primary-900 prose-a:font-medium prose-strong:text-slate-900">
+      <Content />
+    </div>
+
+    <aside class="mt-12 rounded-lg bg-primary-50 p-6">
+      <h2 class="text-lg font-bold text-slate-900">Precisa de ajuda com praga em casa ou no comércio?</h2>
+      <p class="mt-2 text-base text-slate-700">Equipe técnica atende Campo Grande e região. Orçamento sem compromisso no WhatsApp.</p>
+      <a
+        href={siteConfig.whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-4 inline-flex min-h-11 items-center gap-2 rounded-md bg-primary-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-800"
+      >
+        Falar no WhatsApp
+      </a>
+    </aside>
+  </article>
+
+  <Contato />
+</BaseLayout>
