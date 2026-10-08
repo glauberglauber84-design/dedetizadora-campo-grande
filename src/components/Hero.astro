@@ -5,24 +5,42 @@ interface Props {
   h1: string;
   subtitle: string;
   cidade?: string;
+  backgroundImage?: string;
+  imageAlt?: string;
 }
 
-const { h1, subtitle, cidade } = Astro.props;
+const { h1, subtitle, cidade, backgroundImage, imageAlt } = Astro.props;
 ---
 <section class="relative isolate overflow-hidden bg-primary-900 text-white">
-  <!-- Padrão sutil de fundo (SVG inline, sem shift) -->
-  <svg
-    aria-hidden="true"
-    class="pointer-events-none absolute inset-0 h-full w-full opacity-10 mix-blend-overlay"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <pattern id="hero-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-        <path d="M0 40V0h40" fill="none" stroke="white" stroke-width="1" />
-      </pattern>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#hero-grid)" />
-  </svg>
+  {backgroundImage ? (
+    <>
+      <img
+        src={backgroundImage}
+        alt={imageAlt ?? ''}
+        aria-hidden={imageAlt ? undefined : 'true'}
+        width="1920"
+        height="1080"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        class="pointer-events-none absolute inset-0 h-full w-full object-cover"
+      />
+      <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-r from-primary-950/90 via-primary-900/75 to-primary-900/40"></div>
+    </>
+  ) : (
+    <svg
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-0 h-full w-full opacity-10 mix-blend-overlay"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <pattern id="hero-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M0 40V0h40" fill="none" stroke="white" stroke-width="1" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#hero-grid)" />
+    </svg>
+  )}
 
   <div class="relative mx-auto flex max-w-6xl flex-col gap-5 px-4 py-10 sm:gap-6 sm:px-6 sm:py-14 md:py-20">
     {cidade && (
