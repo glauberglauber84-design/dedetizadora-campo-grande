@@ -1,7 +1,11 @@
+const whatsappNumero = "5567999999999";
+const whatsappMensagemPadrao = "Olá! Vim do site Dedetização em Campo Grande-MS. Gostaria de solicitar um orçamento.";
+
 export const siteConfig = {
   nome: "Dedetizadora Campo Grande",
   whatsapp: "(67) 99999-9999",
-  whatsappLink: "https://wa.me/5567999999999",
+  whatsappMensagemPadrao,
+  whatsappLink: `https://wa.me/${whatsappNumero}?text=${encodeURIComponent(whatsappMensagemPadrao)}`,
   endereco: {
     rua: "Rua Exemplo, 456",
     bairro: "Jardim dos Estados",
