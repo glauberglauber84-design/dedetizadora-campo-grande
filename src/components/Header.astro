@@ -6,12 +6,14 @@ const currentPath = Astro.url.pathname;
 <header class="sticky top-0 z-40 w-full border-b border-primary-100 bg-white/95 backdrop-blur">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
     <a href="/" class="flex items-center gap-2 text-primary-900 no-underline" aria-label={`${siteConfig.nome} — ir para a página inicial`}>
-      <span aria-hidden="true" class="inline-flex h-10 w-10 items-center justify-center rounded-md bg-primary-900 text-white">
-        <!-- Shield / pest icon -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6" aria-hidden="true">
-          <path d="M12 2 4 5v6c0 5 3.4 9.3 8 11 4.6-1.7 8-6 8-11V5l-8-3Zm-1 14-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9l-7 7Z"/>
-        </svg>
-      </span>
+      <img
+        src="/logo.png"
+        alt=""
+        width="48"
+        height="48"
+        class="h-10 w-10 sm:h-12 sm:w-12"
+        aria-hidden="true"
+      />
       <span class="flex flex-col leading-tight">
         <span class="text-base font-bold sm:text-lg">Dedetizadora</span>
         <span class="text-xs font-medium text-primary-700 sm:text-sm">Campo Grande</span>
