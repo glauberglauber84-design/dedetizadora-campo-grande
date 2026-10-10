@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dedetizadora-campo-grande.glauberglauber84.workers.dev/sitemap-index.xml
+Sitemap: https://dedetizacaocampograndems.com.br/sitemap-index.xml
