@@ -58,4 +58,4 @@ Depois desses 4 passos, aplique o gel. Se em 2 semanas ainda tem barata, a orige
 
 **Condomínio no Centro, Jardim dos Estados ou Monte Castelo** (áreas com rede de esgoto antiga) — a barata vem pela coluna predial. Tratar só um apartamento é inútil; precisa de dedetização coordenada do prédio inteiro.
 
-Se você está em Campo Grande ou região e já tentou gel ou spray de supermercado sem resolver, [chama no WhatsApp](https://wa.me/5567999999999) com uma foto da barata (ou do local onde aparece). Em 30 minutos a gente identifica se é americana, germânica ou mista, e qual protocolo resolve.
+Se você está em Campo Grande ou região e já tentou gel ou spray de supermercado sem resolver, [chama no WhatsApp](https://wa.me/5567999100333) com uma foto da barata (ou do local onde aparece). Em 30 minutos a gente identifica se é americana, germânica ou mista, e qual protocolo resolve.

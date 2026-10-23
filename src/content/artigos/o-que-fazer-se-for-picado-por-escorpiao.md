@@ -72,4 +72,4 @@ Pontos de entrada típicos:
 **Se encontrou mais de um escorpião em dias diferentes:**
 Já existe população estabelecida. Pulverização isolada não resolve — o escorpião-amarelo é partenogenético (a fêmea gera filhotes sem macho), então basta uma sobreviver pra tudo recomeçar. O protocolo é [controle de escorpião integrado](/desinsetizacao/campo-grande): vedação de pontos de entrada, controle da barata (que serve de alimento), e aplicação com produto adequado nos nichos.
 
-Em Campo Grande, se você encontrou escorpião em casa ou está vendo picada em criança, [chama no WhatsApp](https://wa.me/5567999999999) imediatamente. Atendemos emergência de infestação em até 24 horas úteis.
+Em Campo Grande, se você encontrou escorpião em casa ou está vendo picada em criança, [chama no WhatsApp](https://wa.me/5567999100333) imediatamente. Atendemos emergência de infestação em até 24 horas úteis.

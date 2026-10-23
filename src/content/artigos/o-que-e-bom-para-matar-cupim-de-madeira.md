@@ -63,4 +63,4 @@ Honestamente, raramente. "Mata-cupim" de prateleira trata superfície — não e
 
 Em obra nova ou reforma grande, [barreira química preventiva](/barreira-quimica-cupins/campo-grande) sai mais barato do que descobrir cupim subterrâneo 3 anos depois com assoalho inteiro comprometido. Para imóvel pronto com infestação ativa, [controle de cupim](/controle-cupins/campo-grande) com injeção profissional resolve com garantia escrita.
 
-Se você está vendo serragem embaixo da madeira ou trilha de barro na parede em Campo Grande, [chama no WhatsApp](https://wa.me/5567999999999) com foto do ponto. Em 30 minutos a gente identifica o tipo de cupim e indica o tratamento que resolve de verdade.
+Se você está vendo serragem embaixo da madeira ou trilha de barro na parede em Campo Grande, [chama no WhatsApp](https://wa.me/5567999100333) com foto do ponto. Em 30 minutos a gente identifica o tipo de cupim e indica o tratamento que resolve de verdade.

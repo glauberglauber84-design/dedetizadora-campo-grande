@@ -24,4 +24,4 @@ Antes de aplicar qualquer coisa, vale uma vistoria técnica. Tratamento de cupim
 
 A [barreira química preventiva](/barreira-quimica-cupins/campo-grande) protege obras novas por vários anos. O [controle de cupim em imóveis prontos](/controle-cupins/campo-grande) usa injeção em pontos específicos ou isca inteligente, dependendo do caso.
 
-Se encontrou alguma dessas pistas em casa, [chama no WhatsApp](https://wa.me/5567999999999) com uma foto do ponto suspeito. Em 30 minutos a gente diz se é cupim, qual tipo e qual o próximo passo.
+Se encontrou alguma dessas pistas em casa, [chama no WhatsApp](https://wa.me/5567999100333) com uma foto do ponto suspeito. Em 30 minutos a gente diz se é cupim, qual tipo e qual o próximo passo.
