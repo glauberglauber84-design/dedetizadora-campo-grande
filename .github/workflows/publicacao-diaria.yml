@@ -1,0 +1,31 @@
+name: Publicação diária de artigos
+# Todo dia às 6h (Campo Grande, UTC-4): se houver artigo com pubDate de hoje,
+# faz um commit vazio para a Cloudflare reconstruir o site e liberar o artigo.
+on:
+  schedule:
+    - cron: '0 10 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verificar artigo agendado para hoje
+        id: agenda
+        run: |
+          HOJE=$(TZ=America/Campo_Grande date +%F)
+          echo "hoje=$HOJE" >> "$GITHUB_OUTPUT"
+          if grep -lE "^pubDate: ['\"]?$HOJE" src/content/artigos/*.md; then
+            echo "publicar=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Nenhum artigo agendado para $HOJE."
+          fi
+      - name: Disparar novo build
+        if: steps.agenda.outputs.publicar == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git commit --allow-empty -m "chore: publica artigo agendado para ${{ steps.agenda.outputs.hoje }}"
+          git push

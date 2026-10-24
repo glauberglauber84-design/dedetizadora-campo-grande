@@ -1,11 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
+import { publicado } from '../../utils/publicacao';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import Contato from '../../components/Contato.astro';
 import { siteConfig } from '../../config/siteConfig';
 
-const todos = await getCollection('artigos', ({ data }) => !data.draft);
+const todos = await getCollection('artigos', publicado);
 const artigos = todos.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
 const title = `Conteúdo — guias e dicas sobre controle de pragas em Campo Grande`;

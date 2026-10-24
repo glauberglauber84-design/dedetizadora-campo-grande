@@ -1,11 +1,12 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { publicado } from '../../utils/publicacao';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Contato from '../../components/Contato.astro';
 import { siteConfig } from '../../config/siteConfig';
 
 export async function getStaticPaths() {
-  const artigos = await getCollection('artigos', ({ data }) => !data.draft);
+  const artigos = await getCollection('artigos', publicado);
   return artigos.map((artigo) => ({
     params: { slug: artigo.slug },
     props: { artigo },

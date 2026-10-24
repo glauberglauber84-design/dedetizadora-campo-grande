@@ -1,7 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
+import { publicado } from '../utils/publicacao';
 
-const todos = await getCollection('artigos', ({ data }) => !data.draft);
+const todos = await getCollection('artigos', publicado);
 const posts = todos
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
   .slice(0, 6);
