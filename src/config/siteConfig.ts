@@ -6,21 +6,13 @@ export const siteConfig = {
   whatsapp: "(67) 99910-0333",
   whatsappMensagemPadrao,
   whatsappLink: `https://wa.me/${whatsappNumero}?text=${encodeURIComponent(whatsappMensagemPadrao)}`,
-  endereco: {
-    rua: "Rua Exemplo, 456",
-    bairro: "Jardim dos Estados",
+  // Empresa de área de atendimento: a equipe vai até o cliente, sem endereço aberto ao público.
+  areaAtendimento: {
     cidade: "Campo Grande",
-    estado: "MS",
-    cep: "79000-000"
+    estado: "MS"
   },
-  enderecoCompleto: "Rua Exemplo, 456 — Jardim dos Estados, Campo Grande — MS, CEP 79000-000",
   corPrimaria: "#1b5e20",
   url: "https://dedetizacaocampograndems.com.br",
-  // Lat/Long aproximada do centro de Campo Grande/MS (placeholder razoável)
-  geo: {
-    latitude: -20.4697,
-    longitude: -54.6201
-  },
   servicos: [
     { slug: "dedetizacao-residencial", label: "Dedetização Residencial", icone: "🏠", descricao: "Controle completo de pragas em casas e apartamentos.", imagem: "/images/servicos/dedetizacao-residencial.jpg" },
     { slug: "dedetizacao-comercial", label: "Dedetização Comercial", icone: "🏢", descricao: "Proteção para lojas, escritórios e estabelecimentos.", imagem: "/images/servicos/dedetizacao-comercial.jpg" },
