@@ -7,16 +7,17 @@ interface Props {
 
 const { cidade } = Astro.props;
 
-const enderecoBusca = `${siteConfig.endereco.rua}, ${siteConfig.endereco.bairro}, ${siteConfig.endereco.cidade} ${siteConfig.endereco.estado}`;
-const mapsEmbed = `https://www.google.com/maps?q=${encodeURIComponent(enderecoBusca)}&output=embed`;
-const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(enderecoBusca)}`;
+// Sem endereço aberto ao público: o mapa mostra a área de atendimento (cidade), não um ponto específico.
+const areaBusca = `${cidade ?? siteConfig.areaAtendimento.cidade}, ${siteConfig.areaAtendimento.estado}`;
+const cidadesAtendidas = siteConfig.cidades.map((c) => c.label).join(', ');
+const mapsEmbed = `https://www.google.com/maps?q=${encodeURIComponent(areaBusca)}&output=embed`;
 ---
 <section id="como-encontrar" class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
   <div class="mx-auto max-w-prose text-center">
-    <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">Como nos encontrar</h2>
+    <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">Onde atendemos</h2>
     <p class="mt-4 text-base text-slate-700">
-      Atendemos presencialmente {cidade ? `${cidade} e região` : 'Campo Grande e toda região metropolitana'}.
-      Pode nos visitar ou falar direto no WhatsApp.
+      A equipe vai até o seu imóvel {cidade ? `em ${cidade} e região` : 'em Campo Grande e região'}.
+      Para agendar uma visita ou pedir orçamento, fale direto no WhatsApp.
     </p>
   </div>
 
@@ -24,7 +25,7 @@ const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
     <div class="aspect-video overflow-hidden rounded-xl border border-slate-200 shadow-sm">
       <iframe
         src={mapsEmbed}
-        title={`Mapa: ${siteConfig.enderecoCompleto}`}
+        title={`Mapa da área de atendimento: ${areaBusca}`}
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
         allowfullscreen
@@ -40,14 +41,9 @@ const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
             <path fill-rule="evenodd" d="M11.5 2a7.5 7.5 0 0 0-7.5 7.5c0 5.9 7 11.8 7.3 12.1a.75.75 0 0 0 .9 0C12.5 21.3 19.5 15.4 19.5 9.5A7.5 7.5 0 0 0 11.5 2Zm.5 10a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z" clip-rule="evenodd"/>
           </svg>
           <div>
-            <dt class="font-semibold text-slate-900">Endereço</dt>
-            <dd>{siteConfig.endereco.rua} — {siteConfig.endereco.bairro}</dd>
-            <dd>{siteConfig.endereco.cidade} — {siteConfig.endereco.estado}, CEP {siteConfig.endereco.cep}</dd>
-            <dd class="mt-1">
-              <a href={mapsLink} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center font-semibold text-primary-900 underline underline-offset-2 hover:text-primary-800">
-                Abrir no Google Maps
-              </a>
-            </dd>
+            <dt class="font-semibold text-slate-900">Área de atendimento</dt>
+            <dd>{cidadesAtendidas}, {siteConfig.areaAtendimento.estado}</dd>
+            <dd class="mt-1">Atendimento no local, com visita agendada pelo WhatsApp.</dd>
           </div>
         </div>
 

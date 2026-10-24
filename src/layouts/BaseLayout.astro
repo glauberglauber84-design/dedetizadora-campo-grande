@@ -44,16 +44,9 @@ const localBusiness = {
   "priceRange": "$$",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": siteConfig.endereco.rua,
-    "addressLocality": siteConfig.endereco.cidade,
-    "addressRegion": siteConfig.endereco.estado,
-    "postalCode": siteConfig.endereco.cep,
+    "addressLocality": siteConfig.areaAtendimento.cidade,
+    "addressRegion": siteConfig.areaAtendimento.estado,
     "addressCountry": "BR"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": siteConfig.geo.latitude,
-    "longitude": siteConfig.geo.longitude
   },
   "areaServed": (areaServed && areaServed.length > 0
     ? areaServed
